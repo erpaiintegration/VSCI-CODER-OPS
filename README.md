@@ -8,6 +8,7 @@ This repo is the practical setup system for a personal coding agent that runs sm
 - CODER-CORE-SPEC.md: mission, decision policy, memory and learning guardrails
 - SKILLS-MODULES.md: skill stack and runtime module map
 - TEST-PLAN.md: 12-test baseline for intelligence, coding quality, and learning
+- AGENT-RUNTIME-PROFILE.md: session bootstrap behavior for live execution
 
 ## Daily Operation Files
 
