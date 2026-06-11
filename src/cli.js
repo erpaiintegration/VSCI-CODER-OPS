@@ -2,6 +2,8 @@ import { getRuntimeConfig } from "./config.js";
 import { MemoryStore } from "./memoryStore.js";
 import { OllamaClient } from "./ollamaClient.js";
 import { VsciCoderAgent } from "./vsciCoderAgent.js";
+import { runEvaluation } from "./evaluator.js";
+import { runSupervisor } from "./supervisor.js";
 
 function parseArgs(argv) {
   const args = { cmd: "help" };
@@ -47,10 +49,53 @@ async function main() {
     return;
   }
 
+  if (args.cmd === "eval") {
+    const out = await runEvaluation({
+      agent,
+      outputDir: config.dataDir,
+    });
+    console.log(
+      JSON.stringify(
+        {
+          pass: out.report.summary.pass,
+          summary: out.report.summary,
+          reportPath: out.reportPath,
+          latestPath: out.latestPath,
+        },
+        null,
+        2,
+      ),
+    );
+    return;
+  }
+
+  if (args.cmd === "supervise") {
+    const out = await runSupervisor({
+      agent,
+      outputDir: config.dataDir,
+    });
+    console.log(
+      JSON.stringify(
+        {
+          pass: out.pass,
+          message: out.message,
+          firstSummary: out.firstReport?.summary,
+          secondSummary: out.secondReport?.summary || null,
+          learningRulesApplied: out.learningRulesApplied,
+        },
+        null,
+        2,
+      ),
+    );
+    return;
+  }
+
   console.log("Usage:");
   console.log("  npm run agent:run -- health");
   console.log("  npm run agent:run -- task <task text>");
   console.log("  npm run agent:run -- learn <mistake> <prevention rule>");
+  console.log("  npm run agent:run -- eval");
+  console.log("  npm run agent:run -- supervise");
 }
 
 main().catch((err) => {

@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "agent:run": "node src/cli.js",
-    "agent:test": "node src/test-runner.js"
+    "agent:test": "node src/test-runner.js",
+    "agent:eval": "node src/cli.js eval",
+    "agent:supervise": "node src/cli.js supervise"
   }
 }

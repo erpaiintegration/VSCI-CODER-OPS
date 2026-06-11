@@ -86,7 +86,7 @@ export class OllamaClient {
       stream: false,
       options: {
         temperature: 0.1,
-        num_predict: 220,
+        num_predict: 96,
       },
     };
 

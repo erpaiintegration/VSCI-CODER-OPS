@@ -34,3 +34,12 @@ This repo is the practical setup system for a personal coding agent that runs sm
 - Run task: `npm run agent:run -- task "your coding task"`
 - Add learning rule:
   - `npm run agent:run -- learn "mistake" "prevention rule"`
+- Run 12-case evaluator:
+	- `npm run agent:eval`
+- Run supervisor improvement loop:
+	- `npm run agent:supervise`
+
+## Evaluation Reports
+
+- Latest report: `runtime-data/eval-report-latest.json`
+- Historical reports: `runtime-data/eval-report-*.json`
