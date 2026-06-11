@@ -1,6 +1,7 @@
-# VSCI-CODER Master Task List
+# VSCI-CODER Core Build Plan
 
-This file is the execution source of truth for building and running VSCI-CODER.
+This is a personal, core-first setup plan to make the coder run smart, learn, remember, and code at expert level.
+Admin workflow is intentionally moved to the end.
 
 Status tags:
 - TODO: not started
@@ -8,128 +9,76 @@ Status tags:
 - IN-PROGRESS: currently executing
 - BLOCKED: waiting on dependency
 - VERIFY: needs proof
-- CHECKPOINT: stable milestone reached
 - DONE: completed with proof
 
-## Stage 0 - Control Plane and Rules
+## Core Track A - Brain and Decision Quality
 
-- DONE: Create ops repo scaffold (README, TASKS, STARTUP-CHECKLIST, SESSION-HANDOFF)
-- DONE: Create GitHub repo and push baseline commit
-- TODO: Define VSCI-CODER mission in one paragraph (what it does, what it does not do)
-- TODO: Define non-negotiable done policy (Applied vs Verified vs User-Confirmed)
-- TODO: Define severity model for bugs (S0/S1/S2/S3)
-- TODO: Define required evidence format for completion claims
-- VERIFY: Verify every task update includes owner, status, and proof line
-- CHECKPOINT: Rules and governance are written and stable
+- DONE: Standalone VSCI-CODER repo created and connected
+- NEXT: Finalize coder mission and hard boundaries in CODER-CORE-SPEC.md
+- TODO: Define reasoning policy (when to ask, when to act, when to stop)
+- TODO: Define confidence policy (what requires verification before claiming success)
+- TODO: Define model routing policy (local-first, Featherless overflow)
+- VERIFY: Run 5 decision scenarios and score pass/fail
+- DONE-CRITERIA: Coder takes useful action without fake certainty
 
-## Stage 1 - Agent Identity and Runtime Topology
+## Core Track B - Memory and Learning Loop
 
-- NEXT: Finalize standalone VSCI-CODER profile (independent from Operator)
-- TODO: Record model routing policy (local-first, Featherless fallback)
-- TODO: Record allowed tools and disallowed risky operations
-- TODO: Define session bootstrap prompt for VSCI-CODER
-- TODO: Define session shutdown handoff requirements
-- TODO: Document failure and retry policy (max retries, escalate conditions)
-- VERIFY: Run one dry-run session and verify rules are followed end to end
-- CHECKPOINT: Standalone identity and runtime behavior locked
+- NEXT: Implement memory schema (session, repo, user)
+- TODO: Define what is worth remembering vs what must expire
+- TODO: Add memory update triggers (on failure, on fix, on preference)
+- TODO: Add anti-drift rule (never trust memory without current evidence)
+- TODO: Add learning loop (capture mistake -> pattern -> prevention step)
+- VERIFY: Re-run a prior task in a new session and confirm memory reuse
+- DONE-CRITERIA: Coder resumes context and improves after mistakes
 
-## Stage 2 - Workspace and Visibility Automation
+## Core Track C - Coding Expertise Stack
 
-- TODO: Confirm Todo Tree view is visible and pinned in Activity Bar
-- TODO: Confirm tags are recognized (TODO, NEXT, BLOCKED, VERIFY, CHECKPOINT, DONE)
-- TODO: Add saved VS Code workspace profile for VSCI-CODER operations
-- TODO: Ensure startup opens repo, terminal, and task files automatically
-- TODO: Enable Problems panel and Error Lens visibility defaults
-- VERIFY: Restart VS Code and verify the full workspace state is restored
-- CHECKPOINT: Workspace opens in ready-to-operate mode with no manual setup
+- NEXT: Finalize required skill modules in SKILLS-MODULES.md
+- TODO: Define default code workflow (inspect -> edit -> validate -> summarize)
+- TODO: Define bugfix workflow (reproduce -> isolate -> patch -> regressions)
+- TODO: Define review workflow (findings first: bugs, risks, missing tests)
+- TODO: Define testing workflow (smoke, focused, full depending on blast radius)
+- VERIFY: Complete 3 coding tasks with tests and clean outcomes
+- DONE-CRITERIA: Coder reliably ships working changes, not just plans
 
-## Stage 3 - Backlog Structure and Intake
+## Core Track D - Tooling and Execution Reliability
 
-- TODO: Define Epic structure (E1 Foundation, E2 Coding Workflow, E3 QA, E4 Delivery, E5 Ops)
-- TODO: Add task ID convention (VSCI-001, VSCI-002, ...)
-- TODO: Add dependency fields to every task (depends-on, blocks)
-- TODO: Add acceptance criteria format to every task
-- TODO: Add proof checklist to every task
-- TODO: Add risk flag field (low, medium, high)
-- VERIFY: Confirm each active task has actionable next step <= 30 minutes
-- CHECKPOINT: Backlog is decomposition-ready and execution-safe
+- NEXT: Validate local terminal + git + editor tool chain in one run
+- TODO: Validate MCP access paths needed for your day-to-day tasks
+- TODO: Define fallback behavior when tools fail (retry, alternate tool, escalate)
+- TODO: Define timeout and stop conditions to avoid tool thrashing
+- VERIFY: Simulate 2 tool failures and confirm graceful recovery
+- DONE-CRITERIA: Coder keeps making progress under partial tool failures
 
-## Stage 4 - Coding Execution Workflow
+## Core Track E - Testing the Coder Itself
 
-- TODO: Define issue-to-branch workflow
-- TODO: Define code-change workflow (analyze, edit, test, verify, summarize)
-- TODO: Define review workflow default (bugs first, risks first)
-- TODO: Define rollback and containment workflow for bad deploys
-- TODO: Define no-silent-failure policy (always surface blockers)
-- TODO: Define "no fake done" policy with mandatory evidence
-- VERIFY: Execute one real task through full workflow and record timings
-- CHECKPOINT: Repeatable coding workflow proven on one complete cycle
+- NEXT: Create an eval set of 12 representative tasks in TEST-PLAN.md
+- TODO: Run baseline test pass and capture scores
+- TODO: Patch weakest 3 behaviors
+- TODO: Run second pass and compare improvement
+- VERIFY: Improvement >= 30 percent on weak categories
+- DONE-CRITERIA: Coder shows measurable learning and reliability gains
 
-## Stage 5 - Quality and Verification Gates
+## Deferred Track - Admin and Governance (Later)
 
-- TODO: Define required pre-merge checks (lint, type-check, tests)
-- TODO: Define minimum test expectations by change size
-- TODO: Define regression checklist for risky files
-- TODO: Define security checklist for dependency and secrets handling
-- TODO: Define performance checklist for hot paths
-- TODO: Define documentation checklist for user-facing changes
-- VERIFY: Run gates on a sample change and store outputs in handoff
-- CHECKPOINT: Quality gates enforced and measurable
+- TODO-LATER: Branch protections, PR templates, issue templates
+- TODO-LATER: Label systems, milestones, reporting dashboards
+- TODO-LATER: Full process governance and audit formatting
 
-## Stage 6 - GitHub Operating System
+## What Will Break If We Skip It
 
-- TODO: Enable branch protection on master/main
-- TODO: Require PR for all changes (no direct push after bootstrap)
-- TODO: Require status checks before merge
-- TODO: Add PR template with proof checklist
-- TODO: Add issue templates (bug, task, checkpoint, blocker)
-- TODO: Add labels (todo, next, blocked, verify, done, risk:high)
-- TODO: Add milestone naming convention by stage
-- VERIFY: Open and merge one test PR with full checks passing
-- CHECKPOINT: Repo workflow enforces process automatically
+- BLOCKED-RISK: If memory has no anti-drift rule, coder can repeat outdated assumptions
+- BLOCKED-RISK: If tests are skipped, coder may sound smart but ship regressions
+- BLOCKED-RISK: If tool fallback is undefined, coder stalls on routine failures
 
-## Stage 7 - MCP and Toolchain Reliability
+## Immediate NEXT (In Order)
 
-- TODO: Verify local MCP server availability
-- TODO: Verify VPS MCP connectivity and auth stability
-- TODO: Define tool fallback matrix when a primary tool fails
-- TODO: Define timeouts and retry limits per tool class
-- TODO: Define incident runbook for auth or connectivity failures
-- VERIFY: Simulate tool failure and validate fallback behavior
-- CHECKPOINT: Toolchain is resilient under expected faults
-
-## Stage 8 - Delivery and Deployment Discipline
-
-- TODO: Define release cadence (daily/weekly) and cut-off rules
-- TODO: Define release checklist (tests, notes, rollback plan)
-- TODO: Define environment promotion model (dev -> staging -> prod)
-- TODO: Define post-deploy validation checklist
-- TODO: Define rollback trigger thresholds and ownership
-- VERIFY: Run one dry-run release and one rollback rehearsal
-- CHECKPOINT: Delivery flow is safe and repeatable
-
-## Stage 9 - Weekly Operations Loop
-
-- TODO: Add weekly planning ritual (choose top 3 priorities)
-- TODO: Add daily execution ritual (select NEXT, execute, verify, handoff)
-- TODO: Add weekly review ritual (wins, misses, carryover)
-- TODO: Add metric tracking (tasks completed, blocked time, failure retries)
-- TODO: Add backlog hygiene ritual (archive DONE, split oversized tasks)
-- VERIFY: Complete one full week with metrics captured
-- CHECKPOINT: Operational rhythm established
-
-## Immediate NEXT Actions (Do These First)
-
-- NEXT: Complete Stage 1 standalone profile and runtime policy
-- NEXT: Fix and verify Stage 2 Todo Tree visibility in your UI
-- NEXT: Implement Stage 6 GitHub protections and templates
-- NEXT: Run one real task through Stages 4 and 5 with proof
-
-## Blockers
-
-- BLOCKED: None currently
+- NEXT: Complete CODER-CORE-SPEC.md mission, boundaries, and confidence policy
+- NEXT: Complete SKILLS-MODULES.md with concrete modules and load order
+- NEXT: Complete TEST-PLAN.md and run baseline tests
 
 ## Proof Log
 
 - DONE: Repo created and pushed -> https://github.com/erpaiintegration/VSCI-CODER-OPS
-- DONE: Baseline commit on remote -> 3f6963e
+- DONE: Baseline scaffold commit -> 3f6963e
+- DONE: Core-first task refactor commit -> pending

@@ -1,7 +1,7 @@
 # STARTUP CHECKLIST (60 seconds)
 
-1. Open TASKS.md and pick first NEXT item.
-2. Check Source Control for unexpected changes.
-3. Verify local tool access and VPS access.
-4. Work one stage only.
-5. Update SESSION-HANDOFF.md before ending.
+1. Open TASKS.md and execute the first NEXT item.
+2. Open CODER-CORE-SPEC.md and verify today's focus matches core goals.
+3. Confirm tools are available (terminal, git, required MCP paths).
+4. Run one focused build/test cycle (do not multitask tracks).
+5. Update SESSION-HANDOFF.md with proof before ending.
