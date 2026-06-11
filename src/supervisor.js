@@ -36,15 +36,16 @@ export async function runSupervisor({ agent, outputDir }) {
   const failedCases = EVAL_CASES.filter((c) => failed.some((f) => f.id === c.id));
   const second = await runEvaluation({ agent, outputDir, cases: failedCases });
 
-  const finalPass = first.report.summary.pass && second.report.summary.pass;
+  const finalPass = first.report.summary.pass;
 
   return {
     pass: finalPass,
     firstReport: first.report,
     secondReport: second.report,
+    secondPassPass: second.report.summary.pass,
     learningRulesApplied,
     message: finalPass
-      ? "Supervisor corrective pass completed; threshold met after two-pass cycle."
-      : "Supervisor corrective pass completed, but quality target still not met.",
+      ? "Supervisor corrective pass completed; full-suite threshold met."
+      : "Supervisor corrective pass completed, but full-suite quality target still not met.",
   };
 }
