@@ -43,3 +43,8 @@ This repo is the practical setup system for a personal coding agent that runs sm
 
 - Latest report: `runtime-data/eval-report-latest.json`
 - Historical reports: `runtime-data/eval-report-*.json`
+
+## Quality Policy
+
+- Evaluator pass threshold: `0.85` minimum pass rate.
+- Supervisor behavior: always runs a second corrective pass on weak categories (`score < 2`) and re-tests those cases.

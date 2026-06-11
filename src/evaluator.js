@@ -2,6 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { EVAL_CASES } from "./eval-cases.js";
 
+const PASS_THRESHOLD = 0.85;
+
 function ensureDir(dirPath) {
   fs.mkdirSync(dirPath, { recursive: true });
 }
@@ -44,7 +46,7 @@ export async function runEvaluation({ agent, outputDir, cases = EVAL_CASES }) {
   const totalScore = results.reduce((sum, r) => sum + r.score, 0);
   const maxScore = results.length * 2;
   const passRate = maxScore > 0 ? totalScore / maxScore : 0;
-  const pass = passRate >= 0.75;
+  const pass = passRate >= PASS_THRESHOLD;
 
   const summary = {
     startedAt,
@@ -53,6 +55,7 @@ export async function runEvaluation({ agent, outputDir, cases = EVAL_CASES }) {
     totalScore,
     maxScore,
     passRate,
+    passThreshold: PASS_THRESHOLD,
     pass,
     failedCaseIds: results.filter((r) => r.score < 2).map((r) => r.id),
   };

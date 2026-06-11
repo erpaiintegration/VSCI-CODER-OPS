@@ -13,17 +13,17 @@ const CATEGORY_RULES = {
 export async function runSupervisor({ agent, outputDir }) {
   const first = await runEvaluation({ agent, outputDir, cases: EVAL_CASES });
 
-  if (first.report.summary.pass) {
+  const failed = first.report.results.filter((r) => r.score < 2);
+  if (failed.length === 0) {
     return {
-      pass: true,
+      pass: first.report.summary.pass,
       firstReport: first.report,
       secondReport: null,
       learningRulesApplied: [],
-      message: "Initial evaluation already passed.",
+      message: "No weak categories detected; second corrective pass not required.",
     };
   }
 
-  const failed = first.report.results.filter((r) => r.score < 2);
   const failedCategories = [...new Set(failed.map((r) => r.category))];
 
   const learningRulesApplied = [];
@@ -36,13 +36,15 @@ export async function runSupervisor({ agent, outputDir }) {
   const failedCases = EVAL_CASES.filter((c) => failed.some((f) => f.id === c.id));
   const second = await runEvaluation({ agent, outputDir, cases: failedCases });
 
+  const finalPass = first.report.summary.pass && second.report.summary.pass;
+
   return {
-    pass: second.report.summary.pass,
+    pass: finalPass,
     firstReport: first.report,
     secondReport: second.report,
     learningRulesApplied,
-    message: second.report.summary.pass
-      ? "Supervisor improvement pass succeeded on failed cases."
-      : "Supervisor rerun still has weak cases; manual prompt/module tuning required.",
+    message: finalPass
+      ? "Supervisor corrective pass completed; threshold met after two-pass cycle."
+      : "Supervisor corrective pass completed, but quality target still not met.",
   };
 }
